@@ -14,7 +14,7 @@ class SQLighter:
     def select_single(self, rownum):
         """ Получаем одну строку с номером rownum """
         with self.connection:
-            return self.cursor.execute('SELECT * FROM music WHERE Id = ?', (rownum, )).fetchall()[0]
+            return self.cursor.execute('SELECT * FROM music WHERE ID = ?', (rownum, )).fetchall()[0]
     
     def count_rows(self):
         """ считаем кол-во строк """

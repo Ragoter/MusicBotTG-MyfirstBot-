@@ -1,2 +1,1 @@
-from SQLighter import SQLighter
-SQLighter('music.db')
+a = [1,2,3]

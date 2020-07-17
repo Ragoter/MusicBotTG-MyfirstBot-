@@ -19,7 +19,7 @@ def game(message):
     utils.set_user_game(message.chat.id, row[2])
     # Отсоединяемся от БД
     db_worker.close()
-@bot.message_handler(func=lambda message: True, conent_types=['text'])
+@bot.message_handler(func=lambda message: True, content_types=['text'])
 def check_answer(message):
     # Если функция возвращает None -> Человек не в игре
     answer = utils.get_answer_for_user(message.chat.id)
@@ -28,7 +28,7 @@ def check_answer(message):
         bot.send_message(message.chat.id, 'Чтобы начать игру, напишите команду /game')
     else:
         # Уберём клавиатуру с вариантами ответа.
-        keyboard_hider = type.ReplyKeyboardRemove()
+        keyboard_hider = telebot.types.ReplyKeyboardRemove()
         # Если ответ правильный/неправильный
         if message.text == answer:
             bot.send_message(message.chat.id, 'Верно', reply_markup=keyboard_hider)
@@ -37,6 +37,6 @@ def check_answer(message):
         # Удаляем юзера из хранилища (игра закончена)
         utils.finish_user_game(message.chat.id)
 if __name__ == '__main__':
-    utils.count_rows()
     random.seed()
-bot.polling(none_stop=True)
+    bot.infinity_polling()
+

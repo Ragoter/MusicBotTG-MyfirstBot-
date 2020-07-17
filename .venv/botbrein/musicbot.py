@@ -37,6 +37,7 @@ def check_answer(message):
         # Удаляем юзера из хранилища (игра закончена)
         utils.finish_user_game(message.chat.id)
 if __name__ == '__main__':
+    utils.count_rows()
     random.seed()
     bot.infinity_polling()
 
